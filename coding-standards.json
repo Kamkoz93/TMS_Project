@@ -1,0 +1,135 @@
+{
+    "entityRelations": {
+        "component": {
+            "model": [
+                "PROPERTY"
+            ],
+            "service": [
+                "CONSTRUCTOR"
+            ],
+            "router": [
+                "CONSTRUCTOR"
+            ],
+            "activatedRoute": [
+                "CONSTRUCTOR"
+            ],
+            "viewModel": [
+                "PROPERTY"
+            ]
+        },
+        "guard": {
+            "service": [
+                "CONSTRUCTOR"
+            ],
+            "router": [
+                "CONSTRUCTOR"
+            ]
+        },
+        "service": {
+            "httpClient": [
+                "CONSTRUCTOR"
+            ],
+            "model": [
+                "PARAMETER",
+                "RETURN",
+                "PROPERTY"
+            ]
+        },
+        "pipe": {
+            "service": [
+                "CONSTRUCTOR"
+            ],
+            "model": [
+                "PROPERTY"
+            ]
+        },
+        "directive": {
+            "service": [
+                "CONSTRUCTOR"
+            ],
+            "elementRef": [
+                "CONSTRUCTOR"
+            ],
+            "renderer2": [
+                "CONSTRUCTOR"
+            ],
+            "model": [
+                "PROPERTY"
+            ]
+        }
+    },
+    "external": {
+        "elementRef": {
+            "type": "ElementRef",
+            "module": "@angular/core"
+        },
+        "renderer2": {
+            "type": "Renderer2",
+            "module": "@angular/core"
+        },
+        "templateRef": {
+            "type": "TemplateRef",
+            "module": "@angular/core"
+        },
+        "viewContainerRef": {
+            "type": "ViewContainerRef",
+            "module": "@angular/core"
+        },
+        "httpClient": {
+            "type": "HttpClient",
+            "module": "@angular/common/http"
+        },
+        "router": {
+            "type": "Router",
+            "module": "@angular/router"
+        },
+        "activatedRoute": {
+            "type": "ActivatedRoute",
+            "module": "@angular/router"
+        }
+    },
+    "entities": {
+        "component": {
+            "type": "ANGULAR_COMPONENT",
+            "folder": "components/$name$",
+            "config": {
+                "stylesExtension": "none",
+                "viewEncapsulation": "None",
+                "selector": "generated",
+                "changeDetectionStrategy": "OnPush"
+            }
+        },
+        "model": {
+            "type": "DATA_STRUCTURE"
+        },
+        "viewModel": {
+            "type": "DATA_STRUCTURE",
+            "folder": "components/$name$"
+        },
+        "query": {
+            "type": "DATA_STRUCTURE",
+            "suffix": "QueryModel"
+        },
+        "service": {
+            "type": "ANGULAR_SERVICE"
+        },
+        "guard": {
+            "id": "guard",
+            "type": "ANGULAR_GUARD",
+            "suffix": "Guard",
+            "folder": "guards/$name$"
+        },
+        "directive": {
+            "id": "directive",
+            "type": "ANGULAR_DIRECTIVE",
+            "suffix": "Directive",
+            "folder": "directives/$name$"
+        },
+        "pipe": {
+            "id": "pipe",
+            "type": "ANGULAR_PIPE",
+            "suffix": "Pipe",
+            "folder": "pipes/$name$"
+        }
+    }
+}
