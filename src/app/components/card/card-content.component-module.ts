@@ -6,4 +6,4 @@ import { NgModule } from '@angular/core';
   providers: [],
   exports: [],
 })
-export class CardComponentModule {}
+export class CardContentComponentModule {}

@@ -11,7 +11,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {
+export class CardContentComponent {
   @Input() title: string = '';
   @Input() subtitle: string = '';
 }
