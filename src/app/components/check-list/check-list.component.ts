@@ -6,12 +6,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-progress-bar',
-  templateUrl: './progress-bar.component.html',
+  selector: 'app-check-list',
+  templateUrl: './check-list.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProgressBarComponent {
-  @Input() value: number = 0;
-  @Input() multi?: boolean;
+export class CheckListComponent {
+  @Input() isDoneCount: number = 0;
+  @Input() totalChecks: number = 0;
 }

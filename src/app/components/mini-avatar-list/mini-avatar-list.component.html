@@ -1,0 +1,12 @@
+<div class="card-meta">
+    <ul class="avatars">
+
+        <li *ngFor="let avatar of data">
+            <a href="#" data-toggle="tooltip" title="" [attr.data-original-title]="avatar.firstName">
+                <img alt="{{avatar.firstName}}" class="avatar" src="{{avatar.avatarUrl}}">
+            </a>
+        </li>
+
+    </ul>
+    <ng-content></ng-content>
+</div>

@@ -1,0 +1,15 @@
+<app-navbar>
+    <app-card-content [title]="'Tasks'" [subtitle]="'You can browse through tasks below'"></app-card-content>
+    <hr>
+    <div class="content-list-body">
+        <div class="card-list-body">
+            <app-list-element class="card-task" *ngFor="let task of fullTasksList$ | async" [heading]="task.name"
+                [description]="task.dueDate | dueDate" [progressValue]="task.tasksProgress" [multi]="true">
+                <app-mini-avatar-list [data]="task.assignees">
+                    <app-check-list [isDoneCount]="getCountOfIsDone(task.checkList)"
+                        [totalChecks]="task.checkList.length"></app-check-list>
+                </app-mini-avatar-list>
+            </app-list-element>
+        </div>
+    </div>
+</app-navbar>

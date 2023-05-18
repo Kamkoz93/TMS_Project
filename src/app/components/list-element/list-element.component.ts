@@ -15,4 +15,5 @@ export class ListElementComponent {
   @Input() heading: string = '';
   @Input() description: string = '';
   @Input() progressValue: number = 0;
+  @Input() multi?: boolean;
 }

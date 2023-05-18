@@ -4,7 +4,7 @@
     <div class="content-list">
         <div class="content-list-body row">
             <app-list-element class="col-lg-6" *ngFor="let team of teamsList$ | async" [heading]="team.name"
-                [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'">></app-list-element>
+                [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'"></app-list-element>
         </div>
     </div>
 </app-navbar>
