@@ -5,7 +5,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { CheckListComponent } from './components/check-list/check-list.component';
 import { EmployeesComponent } from './components/employees/employees.component';
-import { EmployeesComponentModule } from './components/employees/employees.component-module';
+import { HomeComponent } from './components/home/home.component';
+import { HomeComponentModule } from './components/home/home.component-module';
 
 const routes: Routes = [
   { path: 'teams', component: TeamsComponent },
@@ -13,10 +14,11 @@ const routes: Routes = [
   { path: 'tasks', component: TasksComponent },
   { path: 'test', component: CheckListComponent },
   { path: 'employees', component: EmployeesComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

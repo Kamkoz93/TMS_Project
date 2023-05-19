@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { CheckListComponent } from './components/check-list/check-list.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AvatarCardComponent } from './components/avatar-card/avatar-card.compon
     CheckListComponent,
     EmployeesComponent,
     AvatarCardComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
