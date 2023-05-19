@@ -15,6 +15,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { MiniAvatarListComponent } from './components/mini-avatar-list/mini-avatar-list.component';
 import { RouterModule } from '@angular/router';
 import { CheckListComponent } from './components/check-list/check-list.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CheckListComponent } from './components/check-list/check-list.component
     ProgressBarComponent,
     MiniAvatarListComponent,
     CheckListComponent,
+    EmployeesComponent,
+    AvatarCardComponent,
   ],
   imports: [
     BrowserModule,
