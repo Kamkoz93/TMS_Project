@@ -15,4 +15,5 @@ export class AvatarCardComponent {
   @Input() photo: string = '';
   @Input() fullName: string = '';
   @Input() position: string = '';
+  @Input() id: string = '';
 }

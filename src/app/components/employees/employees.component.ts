@@ -3,9 +3,9 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EmployeesService } from '../../services/employees.service';
-import { AvatarCardQueryModel } from 'src/app/queries/avatar-card.query-model';
+import { EmployeeModel } from 'src/app/models/employee.model';
 
 @Component({
   selector: 'app-employees',
@@ -14,16 +14,8 @@ import { AvatarCardQueryModel } from 'src/app/queries/avatar-card.query-model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesComponent {
-  readonly employeeList$: Observable<AvatarCardQueryModel[]> =
-    this._employeesService.getAll().pipe(
-      map((employees) =>
-        employees.map((employee) => ({
-          fullName: `${employee.firstName} ${employee.lastName}`,
-          avatarUrl: employee.avatarUrl,
-          position: employee.position,
-        }))
-      )
-    );
+  readonly employeeList$: Observable<EmployeeModel[]> =
+    this._employeesService.getAll();
 
   constructor(private _employeesService: EmployeesService) {}
 }
