@@ -17,4 +17,10 @@ export class EmployeesService {
         shareReplay(1)
       );
   }
+
+  getOne(id: string): Observable<EmployeeModel> {
+    return this.getAll().pipe(
+      map((employees) => employees.filter((emp) => emp.id === id)[0])
+    );
+  }
 }
