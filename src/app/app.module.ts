@@ -18,6 +18,10 @@ import { CheckListComponent } from './components/check-list/check-list.component
 import { EmployeesComponent } from './components/employees/employees.component';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { HomeComponent } from './components/home/home.component';
+import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { TeamDetailsComponent } from './components/team-details/team-details.component';
+import { ToggleViewDirective } from './directives/toggle-view/toggle-view.directive';
+import { PointerOnHoverDirective } from './directives/pointer-on-hover/pointer-on-hover.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { HomeComponent } from './components/home/home.component';
     EmployeesComponent,
     AvatarCardComponent,
     HomeComponent,
+    EmployeeDetailComponent,
+    TeamDetailsComponent,
+    ToggleViewDirective,
+    PointerOnHoverDirective,
   ],
   imports: [
     BrowserModule,
