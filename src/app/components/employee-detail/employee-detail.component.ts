@@ -3,10 +3,10 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { EmployeesService } from '../../services/employees.service';
 import { EmployeeModel } from 'src/app/models/employee.model';
-import { Observable, combineLatest, map, switchMap } from 'rxjs';
+import { Observable, combineLatest, map, shareReplay, switchMap } from 'rxjs';
 import { TeamsService } from 'src/app/services/teams.service';
 import { TeamModel } from 'src/app/models/team.model';
 import { ProjectModel } from 'src/app/models/project.model';
@@ -26,25 +26,28 @@ export class EmployeeDetailComponent {
     private _projectsService: ProjectsService
   ) {}
 
-  readonly employeeList$: Observable<EmployeeModel[]> =
-    this._employeesService.getAll();
+  readonly pageParams: Observable<string> = this._activatedRoute.params.pipe(
+    map((params) => params['id'])
+  );
 
   readonly projectsList$: Observable<ProjectModel[]> =
     this._projectsService.getAll();
 
   readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
 
-  readonly employeeDetails$: Observable<EmployeeModel> =
-    this._activatedRoute.params.pipe(
-      switchMap((params) => {
-        return this._employeesService.getOne(params['id']);
-      })
-    );
+  readonly employeeDetails$: Observable<EmployeeModel> = this.pageParams.pipe(
+    switchMap((id) => {
+      return this._employeesService.getOne(id);
+    }),
+    shareReplay(1)
+  );
+
   readonly teamsWithEmployee$: Observable<TeamModel[]> = combineLatest([
     this.teamsList$,
     this.employeeDetails$,
+    this.pageParams,
   ]).pipe(
-    map(([teams, employee]: [TeamModel[], EmployeeModel]) => {
+    map(([teams, employee, params]: [TeamModel[], EmployeeModel, string]) => {
       return teams.filter((team: TeamModel) =>
         team.members.some((member) => member.id === employee.id)
       );
@@ -60,4 +63,14 @@ export class EmployeeDetailComponent {
       );
     })
   );
+
+  filterOutSelectedMember(
+    teamMembers: EmployeeModel[]
+  ): Observable<EmployeeModel[]> {
+    return this.pageParams.pipe(
+      map((paramId: string) =>
+        teamMembers.filter((member) => member.id !== paramId)
+      )
+    );
+  }
 }
