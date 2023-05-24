@@ -7,6 +7,7 @@
         <div class="content-list">
             <div class="content-list-body row">
                 <app-list-element class="col-lg-6" *ngFor="let team of teamsList$ | async" [heading]="team.name"
+                    appPointerOnHover [urlId]="'/teams/'+team.id"
                     [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'"></app-list-element>
             </div>
         </div>
@@ -16,7 +17,7 @@
         <div class="content-list">
             <div class="content-list-body row">
                 <app-avatar-card class="col-lg-6" *ngFor="let employee of employeeList$ | async"
-                    [id]="'/employee/'+ employee.id" [fullName]="employee.firstName +' ' + employee.lastName"
+                    [id]="'/employee/'+ employee.id" [fullName]="employee.firstName + ' ' + employee.lastName"
                     [position]="employee.position" [photo]="employee.avatarUrl"></app-avatar-card>
             </div>
         </div>
