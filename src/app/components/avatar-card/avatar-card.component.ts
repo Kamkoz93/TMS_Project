@@ -14,6 +14,6 @@ import {
 export class AvatarCardComponent {
   @Input() photo: string = '';
   @Input() fullName: string = '';
-  @Input() position: string = '';
-  @Input() id: string = '';
+  @Input() description: string = '';
+  @Input() urlId: string = '';
 }

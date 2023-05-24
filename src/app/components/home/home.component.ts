@@ -8,6 +8,7 @@ import { EmployeeModel } from 'src/app/models/employee.model';
 import { TeamModel } from 'src/app/models/team.model';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { TeamsService } from 'src/app/services/teams.service';
+import { ROUTES_DEF } from 'src/app/configuration/routes-definition';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class HomeComponent {
 
   readonly employeeList$: Observable<EmployeeModel[]> =
     this._employeesService.getAll();
+
+  readonly urlRoutes = ROUTES_DEF;
 
   constructor(
     private _employeesService: EmployeesService,

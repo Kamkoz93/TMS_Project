@@ -6,6 +6,7 @@ import { CheckListItemModel } from '../models/check-list-item.model';
 import { MappedTaskQueryModel } from '../queries/mapped-task.query-model';
 import { EmployeesService } from './employees.service';
 import { EmployeeModel } from '../models/employee.model';
+import { API_ROUTES_DEF } from '../configuration/routes-definition';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
@@ -14,14 +15,12 @@ export class TasksService {
     private _employeeService: EmployeesService
   ) {}
   getAll(): Observable<TaskModel[]> {
-    return this._httpClient.get<TaskModel[]>(
-      'https://63810e439440b61b0d10b7c7.mockapi.io/tasks'
-    );
+    return this._httpClient.get<TaskModel[]>(API_ROUTES_DEF.TASKS);
   }
 
   getChecklistItems(): Observable<CheckListItemModel[]> {
     return this._httpClient.get<CheckListItemModel[]>(
-      'https://63810e439440b61b0d10b7c7.mockapi.io/checklist-items'
+      API_ROUTES_DEF.CHECKLIST_ITEMS
     );
   }
 

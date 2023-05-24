@@ -3,7 +3,7 @@
 <div class="content-list mt-4">
     <div class="content-list-body row">
         <app-avatar-card class="col-lg-6" *ngFor="let employee of employeeList$ | async"
-            [fullName]="employee.firstName + ' ' + employee.lastName" [position]="employee.position"
-            [photo]="employee.avatarUrl" [id]="'/employee/'+ employee.id"></app-avatar-card>
+            [fullName]="employee.firstName + ' ' + employee.lastName" [description]="employee.position"
+            [photo]="employee.avatarUrl" [urlId]="'/' + urlRoutes.EMPLOYEE_DETAILS + employee.id"></app-avatar-card>
     </div>
 </div>
