@@ -1,34 +1,31 @@
-<app-navbar>
-    <div *ngIf="teamDetails$ | async as team">
-        <app-card-content [title]="team.name" [subtitle]="team.description">
-            <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list></app-card-content>
-        <hr>
+<div *ngIf="teamDetails$ | async as team">
+    <app-card-content [title]="team.name" [subtitle]="team.description">
+        <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list></app-card-content>
+    <hr>
 
-        <div class="col-lg-11 col-xl-10">
-            <ul role="tablist" class="nav nav-tabs nav-fill">
-                <li class="nav-item"><a data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
-                        aria-selected="true" class="nav-link active">Projects</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="projects" role="tabpanel" class="tab-pane fade active show">
-                    <div class="content-list">
-                        <div class="row content-list-head">
-                            <div class="col-auto">
-                                <h3>Projects</h3>
-                            </div>
-                        </div>
-                        <div class="content-list-body row">
-                            <app-list-element class="col-6" *ngFor="let project of team.projects" class="col-lg-6"
-                                [urlId]="project.id" [heading]="project.name">
-                                <div class="card-meta d-flex">
-                                    <span class="text-small">{{project.dueDate | dueDate}}</span>
-                                </div>
-                            </app-list-element>
-                        </div>
+
+    <ul role="tablist" class="nav nav-tabs nav-fill">
+        <li class="nav-item"><a data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
+                aria-selected="true" class="nav-link active">Projects</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="projects" role="tabpanel" class="tab-pane fade active show">
+            <div class="content-list">
+                <div class="row content-list-head">
+                    <div class="col-auto">
+                        <h3>Projects</h3>
                     </div>
+                </div>
+                <div class="content-list-body row">
+                    <app-list-element class="col-6" *ngFor="let project of team.projects" class="col-lg-6"
+                        [urlId]="project.id" [heading]="project.name">
+                        <div class="card-meta d-flex">
+                            <span class="text-small">{{project.dueDate | dueDate}}</span>
+                        </div>
+                    </app-list-element>
                 </div>
             </div>
         </div>
     </div>
 
-</app-navbar>
+</div>

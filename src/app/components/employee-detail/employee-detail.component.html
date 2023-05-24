@@ -1,60 +1,58 @@
-<app-navbar>
-    <div class="col-lg-11 col-xl-10" *ngIf="employeeDetails$ | async as employee">
-        <div class="page-header mb-4">
-            <div class="media">
-                <img [alt]="employee.firstName" [src]="employee.avatarUrl" class="avatar avatar-lg mt-1">
-                <div class="media-body ml-3">
-                    <h1 class="mb-0">{{employee.firstName + ' ' + employee.lastName}}</h1>
-                    <p class="lead">{{employee.position}}</p>
+<div *ngIf="employeeDetails$ | async as employee">
+    <div class="page-header mb-4">
+        <div class="media">
+            <img [alt]="employee.firstName" [src]="employee.avatarUrl" class="avatar avatar-lg mt-1">
+            <div class="media-body ml-3">
+                <h1 class="mb-0">{{employee.firstName + ' ' + employee.lastName}}</h1>
+                <p class="lead">{{employee.position}}</p>
+            </div>
+        </div>
+    </div>
+
+    <ul role="tablist" class="nav nav-tabs nav-fill">
+        <li class="nav-item"><a data-toggle="tab" href="#teams" role="tab" aria-controls="teams" aria-selected="true"
+                class="nav-link active">Teams</a></li>
+        <li class="nav-item"><a data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
+                aria-selected="false" class="nav-link">Projects</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="teams" role="tabpanel" class="tab-pane fade active show">
+            <div class="content-list">
+                <div class="row ">
+                    <div class="col-auto">
+                        <h3>Teams</h3>
+                    </div>
+                </div>
+                <div class="content-list-body row">
+
+                    <app-list-element class="col-lg-6" *ngFor="let team of teamsWithEmployee$ | async" class="col-lg-6"
+                        [heading]="team.name"
+                        [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'">
+                        <app-mini-avatar-list
+                            [data]="filterOutSelectedMember(team.members) | async"></app-mini-avatar-list>
+                    </app-list-element>
+
                 </div>
             </div>
         </div>
-
-        <ul role="tablist" class="nav nav-tabs nav-fill">
-            <li class="nav-item"><a data-toggle="tab" href="#teams" role="tab" aria-controls="teams"
-                    aria-selected="true" class="nav-link active">Teams</a></li>
-            <li class="nav-item"><a data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
-                    aria-selected="false" class="nav-link">Projects</a></li>
-        </ul>
-        <div class="tab-content">
-            <div id="teams" role="tabpanel" class="tab-pane fade active show">
-                <div class="content-list">
-                    <div class="row ">
-                        <div class="col-auto">
-                            <h3>Teams</h3>
-                        </div>
-                    </div>
-                    <div class="content-list-body row">
-
-                        <app-list-element class="col-lg-6" *ngFor="let team of teamsWithEmployee$ | async"
-                            class="col-lg-6" [heading]="team.name"
-                            [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'">
-                            <app-mini-avatar-list
-                                [data]="filterOutSelectedMember(team.members) | async"></app-mini-avatar-list>
-                        </app-list-element>
-
+        <div id="projects" role="tabpanel" class="tab-pane fade">
+            <div class="content-list">
+                <div class="row content-list-head">
+                    <div class="col-auto">
+                        <h3>Projects</h3>
                     </div>
                 </div>
-            </div>
-            <div id="projects" role="tabpanel" class="tab-pane fade">
-                <div class="content-list">
-                    <div class="row content-list-head">
-                        <div class="col-auto">
-                            <h3>Projects</h3>
+                <div class="content-list-body row">
+                    <app-list-element class="col-6" *ngFor="let project of projectsWithEmployee$ | async"
+                        class="col-lg-6" [heading]="project.name">
+                        <div class="card-meta d-flex justify-content-between">
+                            <app-check-list [isDoneCount]="0" [totalChecks]="5"></app-check-list>
+                            <span class="text-small">{{project.dueDate | daysLeft}}</span>
                         </div>
-                    </div>
-                    <div class="content-list-body row">
-                        <app-list-element class="col-6" *ngFor="let project of projectsWithEmployee$ | async"
-                            class="col-lg-6" [heading]="project.name">
-                            <div class="card-meta d-flex justify-content-between">
-                                <app-check-list [isDoneCount]="0" [totalChecks]="5"></app-check-list>
-                                <span class="text-small">{{project.dueDate | dueDate}}</span>
-                            </div>
-                        </app-list-element>
+                    </app-list-element>
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</app-navbar>
+</div>

@@ -25,62 +25,6 @@ export class TasksService {
     );
   }
 
-  // getFullTasksList(): Observable<MappedTaskQueryModel[]> {
-  //   return combineLatest([
-  //     this.getChecklistItems(),
-  //     this.getAll(),
-  //     this._employeeService.getAll(),
-  //   ]).pipe(
-  //     map(
-  //       ([checklistItems, tasks, employees]: [
-  //         CheckListItemModel[],
-  //         TaskModel[],
-  //         EmployeeModel[]
-  //       ]) => {
-  //         return tasks.map((task) => {
-  //           const checkList = task.checkList
-  //             .map((checklistId) => {
-  //               const checklistItem = checklistItems.find(
-  //                 (item) => item.id === checklistId
-  //               );
-  //               if (checklistItem) {
-  //                 return {
-  //                   id: checklistItem.id,
-  //                   name: checklistItem.name,
-  //                   isDone: checklistItem.isDone,
-  //                 };
-  //               } else {
-  //                 return null;
-  //               }
-  //             })
-  //             .filter((item) => item !== null) as CheckListItemModel[];
-
-  //           const completedChecklists = checkList.filter(
-  //             (item) => item.isDone === true
-  //           );
-
-  //           const progress = Math.round(
-  //             (completedChecklists.length / checkList.length) * 100
-  //           );
-
-  //           const assignees = task.assigneeIds.map((assigneeId: string) => {
-  //             return employees.find(
-  //               (employee: EmployeeModel) => employee.id === assigneeId
-  //             );
-  //           });
-
-  //           return {
-  //             ...task,
-  //             checkList,
-  //             tasksProgress: progress,
-  //             assignees: assignees,
-  //           };
-  //         });
-  //       }
-  //     )
-  //   );
-  // }
-
   private mapChecklistItems(
     checklistItems: CheckListItemModel[],
     task: TaskModel
