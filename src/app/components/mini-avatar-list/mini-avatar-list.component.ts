@@ -13,5 +13,5 @@ import { EmployeeModel } from '../../models/employee.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MiniAvatarListComponent {
-  @Input() data: EmployeeModel[] = [];
+  @Input() data: EmployeeModel[] | null = [];
 }

@@ -16,5 +16,5 @@ export class ListElementComponent {
   @Input() description: string = '';
   @Input() progressValue: number = 0;
   @Input() multi?: boolean;
-  @Input() urlId?: string = '';
+  @Input() urlId: string | null = null;
 }
