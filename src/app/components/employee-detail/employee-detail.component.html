@@ -1,21 +1,15 @@
 <app-navbar>
-    <!-- <div class="page-header mb-4">
-        <div class="media">
-          <img alt="Image" src="assets/img/avatar-male-4.jpg" class="avatar avatar-lg mt-1">
-          <div class="media-body ml-3">
-            <h1 class="mb-0">David Whittaker</h1>
-            <p class="lead">Interface designer and front-end developer</p>
-          </div>
-        </div>
-      </div> -->
     <div class="col-lg-11 col-xl-10" *ngIf="employeeDetails$ | async as employee">
-        <div class="media media-member">
-            <img [alt]="employee.firstName" [src]="employee.avatarUrl" class="avatar avatar-lg">
-            <div class="media-body">
-                <h2 class="mb-0">{{employee.firstName + ' ' + employee.lastName}}</h2>
-                <span class="text-body">{{employee.position}}</span>
+        <div class="page-header mb-4">
+            <div class="media">
+                <img [alt]="employee.firstName" [src]="employee.avatarUrl" class="avatar avatar-lg mt-1">
+                <div class="media-body ml-3">
+                    <h1 class="mb-0">{{employee.firstName + ' ' + employee.lastName}}</h1>
+                    <p class="lead">{{employee.position}}</p>
+                </div>
             </div>
         </div>
+
         <ul role="tablist" class="nav nav-tabs nav-fill">
             <li class="nav-item"><a data-toggle="tab" href="#teams" role="tab" aria-controls="teams"
                     aria-selected="true" class="nav-link active">Teams</a></li>
@@ -35,7 +29,9 @@
                         <app-list-element class="col-lg-6" *ngFor="let team of teamsWithEmployee$ | async"
                             class="col-lg-6" [heading]="team.name"
                             [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'">
-                            <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list></app-list-element>
+                            <app-mini-avatar-list
+                                [data]="filterOutSelectedMember(team.members) | async"></app-mini-avatar-list>
+                        </app-list-element>
 
                     </div>
                 </div>
@@ -61,7 +57,4 @@
             </div>
         </div>
     </div>
-
-
-
 </app-navbar>
