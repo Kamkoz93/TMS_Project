@@ -22,6 +22,7 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
 import { TeamDetailsComponent } from './components/team-details/team-details.component';
 import { ToggleViewDirective } from './directives/toggle-view/toggle-view.directive';
 import { PointerOnHoverDirective } from './directives/pointer-on-hover/pointer-on-hover.directive';
+import { DaysLeftPipeModule } from './pipes/days-left/days-left.pipe-module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PointerOnHoverDirective } from './directives/pointer-on-hover/pointer-o
     AppRoutingModule,
     HttpClientModule,
     DueDatePipeModule,
+    DaysLeftPipeModule,
     ProgressBarDirectiveModule,
     RouterModule,
   ],
