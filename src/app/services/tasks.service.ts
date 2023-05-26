@@ -14,6 +14,7 @@ export class TasksService {
     private _httpClient: HttpClient,
     private _employeeService: EmployeesService
   ) {}
+
   getAll(): Observable<TaskModel[]> {
     return this._httpClient.get<TaskModel[]>(API_ROUTES_DEF.TASKS);
   }
@@ -28,23 +29,24 @@ export class TasksService {
     checklistItems: CheckListItemModel[],
     task: TaskModel
   ): CheckListItemModel[] {
-    return task.checkList
-      .map((checklistId) => {
+    return task.checkList.reduce(
+      (mappedItems: CheckListItemModel[], checklistId: string) => {
         const checklistItem = checklistItems.find(
           (item) => item.id === checklistId
         );
 
         if (checklistItem) {
-          return {
+          mappedItems.push({
             id: checklistItem.id,
             name: checklistItem.name,
             isDone: checklistItem.isDone,
-          };
+          });
         }
 
-        return null;
-      })
-      .filter(Boolean) as CheckListItemModel[];
+        return mappedItems;
+      },
+      []
+    );
   }
 
   private calculateProgress(checkList: CheckListItemModel[]): number {
