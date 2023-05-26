@@ -1,10 +1,10 @@
-import { Input, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CheckListComponent } from './check-list.component';
 
 @NgModule({
   imports: [],
-  declarations: [],
+  declarations: [CheckListComponent],
   providers: [],
-  exports: [],
+  exports: [CheckListComponent],
 })
-export class CheckListComponentModule {
-}
+export class CheckListComponentModule {}

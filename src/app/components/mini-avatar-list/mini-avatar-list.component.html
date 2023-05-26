@@ -2,7 +2,7 @@
     <ul class="avatars">
 
         <li *ngFor="let avatar of data">
-            <a [routerLink]="'/' + urlRoutes.EMPLOYEE_DETAILS + avatar.id" data-toggle="tooltip" title=""
+            <a [href]="'/' + urlRoutes.EMPLOYEE_DETAILS + avatar.id" data-toggle="tooltip" title=""
                 [attr.data-original-title]="avatar.firstName">
                 <img alt="{{avatar.firstName}}" class="avatar" src="{{avatar.avatarUrl}}">
             </a>

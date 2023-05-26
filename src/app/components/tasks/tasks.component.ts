@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, combineLatest, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CheckListItemModel } from 'src/app/models/check-list-item.model';
 import { EmployeeModel } from 'src/app/models/employee.model';
 import { TaskModel } from 'src/app/models/task.model';

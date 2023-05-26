@@ -3,55 +3,41 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ListElementComponent } from './components/list-element/list-element.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CardContentComponent } from './components/card/card-content.component';
-import { TeamsComponent } from './components/teams/teams.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { DueDatePipeModule } from './pipes/due-date/due-date.pipe-module';
 import { ProgressBarDirectiveModule } from './directives/progress-bar/progress-bar.directive-module';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { TasksComponent } from './components/tasks/tasks.component';
-import { MiniAvatarListComponent } from './components/mini-avatar-list/mini-avatar-list.component';
 import { RouterModule } from '@angular/router';
-import { CheckListComponent } from './components/check-list/check-list.component';
-import { EmployeesComponent } from './components/employees/employees.component';
-import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
-import { HomeComponent } from './components/home/home.component';
-import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
-import { TeamDetailsComponent } from './components/team-details/team-details.component';
-import { ToggleViewDirective } from './directives/toggle-view/toggle-view.directive';
-import { PointerOnHoverDirective } from './directives/pointer-on-hover/pointer-on-hover.directive';
-import { DaysLeftPipeModule } from './pipes/days-left/days-left.pipe-module';
+import { ProjectsComponentModule } from './components/projects/projects.component-module';
+import { TasksComponentModule } from './components/tasks/tasks.component-module';
+import { TeamDetailsComponentModule } from './components/team-details/team-details.component-module';
+import { HomeComponentModule } from './components/home/home.component-module';
+import { AvatarCardComponentModule } from './components/avatar-card/avatar-card.component-module';
+import { EmployeeDetailComponentModule } from './components/employee-detail/employee-detail.component-module';
+import { EmployeesComponentModule } from './components/employees/employees.component-module';
+import { ListElementComponentModule } from './components/list-element/list-element.component-module';
+import { CardContentComponentModule } from './components/card/card-content.component-module';
+import { TeamsComponentModule } from './components/teams/teams.component-module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListElementComponent,
-    NavbarComponent,
-    CardContentComponent,
-    TeamsComponent,
-    ProjectsComponent,
-    TasksComponent,
-    ProgressBarComponent,
-    MiniAvatarListComponent,
-    CheckListComponent,
-    EmployeesComponent,
-    AvatarCardComponent,
-    HomeComponent,
-    EmployeeDetailComponent,
-    TeamDetailsComponent,
-    ToggleViewDirective,
-    PointerOnHoverDirective,
-  ],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DueDatePipeModule,
-    DaysLeftPipeModule,
-    ProgressBarDirectiveModule,
     RouterModule,
+    ProgressBarDirectiveModule,
+    ProjectsComponentModule,
+    TasksComponentModule,
+    TeamDetailsComponentModule,
+    ProgressBarDirectiveModule,
+    HomeComponentModule,
+    AvatarCardComponentModule,
+    EmployeeDetailComponentModule,
+    EmployeesComponentModule,
+    ListElementComponentModule,
+    CardContentComponentModule,
+    TeamsComponentModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

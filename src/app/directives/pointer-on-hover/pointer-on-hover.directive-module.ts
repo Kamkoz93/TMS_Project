@@ -3,8 +3,8 @@ import { PointerOnHoverDirective } from './pointer-on-hover.directive';
 
 @NgModule({
   imports: [],
-  declarations: [],
+  declarations: [PointerOnHoverDirective],
   providers: [],
-  exports: [],
+  exports: [PointerOnHoverDirective],
 })
 export class PointerOnHoverDirectiveModule {}

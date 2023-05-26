@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { AvatarCardComponent } from './avatar-card.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [],
-  declarations: [],
+  imports: [RouterModule],
+  declarations: [AvatarCardComponent],
   providers: [],
-  exports: []
+  exports: [AvatarCardComponent],
 })
-export class AvatarCardComponentModule {
-}
+export class AvatarCardComponentModule {}

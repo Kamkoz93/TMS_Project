@@ -5,7 +5,6 @@ import { ProgressBarDirective } from './progress-bar.directive';
   imports: [],
   declarations: [ProgressBarDirective],
   providers: [],
-  exports: [ProgressBarDirective]
+  exports: [ProgressBarDirective],
 })
-export class ProgressBarDirectiveModule {
-}
+export class ProgressBarDirectiveModule {}

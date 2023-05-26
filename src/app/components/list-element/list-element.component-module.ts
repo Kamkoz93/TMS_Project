@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ListElementComponent } from './list-element.component';
+import { RouterModule } from '@angular/router';
+import { ProgressBarComponentModule } from '../progress-bar/progress-bar.component-module';
 
 @NgModule({
-  imports: [],
-  declarations: [],
+  imports: [RouterModule, ProgressBarComponentModule],
+  declarations: [ListElementComponent],
   providers: [],
-  exports: []
+  exports: [ListElementComponent],
 })
-export class ListElementComponentModule {
-}
+export class ListElementComponentModule {}
