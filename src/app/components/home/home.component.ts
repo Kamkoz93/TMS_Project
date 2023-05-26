@@ -17,15 +17,15 @@ import { ROUTES_DEF } from 'src/app/configuration/routes-definition';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
-
-  readonly employeeList$: Observable<EmployeeModel[]> =
-    this._employeesService.getAll();
-
-  readonly urlRoutes = ROUTES_DEF;
-
   constructor(
     private _employeesService: EmployeesService,
     private _teamsService: TeamsService
   ) {}
+
+  readonly urlRoutes = ROUTES_DEF;
+
+  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
+
+  readonly employeeList$: Observable<EmployeeModel[]> =
+    this._employeesService.getAll();
 }

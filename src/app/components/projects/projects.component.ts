@@ -14,8 +14,8 @@ import { ProjectsService } from 'src/app/services/projects.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {
+  constructor(private _projectService: ProjectsService) {}
+
   readonly projectsList$: Observable<ProjectModel[]> =
     this._projectService.getAll();
-
-  constructor(private _projectService: ProjectsService) {}
 }

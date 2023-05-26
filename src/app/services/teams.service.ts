@@ -7,6 +7,7 @@ import { API_ROUTES_DEF } from '../configuration/routes-definition';
 @Injectable({ providedIn: 'root' })
 export class TeamsService {
   constructor(private _httpClient: HttpClient) {}
+
   getAll(): Observable<TeamModel[]> {
     return this._httpClient.get<TeamModel[]>(API_ROUTES_DEF.TEAMS);
   }

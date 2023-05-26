@@ -22,7 +22,6 @@ export class TasksComponent {
     private _tasksService: TasksService,
     private _employeesService: EmployeesService
   ) {}
-  readonly tasksList$: Observable<TaskModel[]> = this._tasksService.getAll();
 
   readonly checklistItemsList$: Observable<CheckListItemModel[]> =
     this._tasksService.getChecklistItems();

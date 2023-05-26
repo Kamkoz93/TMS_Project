@@ -15,10 +15,10 @@ import { ROUTES_DEF } from 'src/app/configuration/routes-definition';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesComponent {
-  readonly employeeList$: Observable<EmployeeModel[]> =
-    this._employeesService.getAll();
+  constructor(private _employeesService: EmployeesService) {}
 
   readonly urlRoutes = ROUTES_DEF;
 
-  constructor(private _employeesService: EmployeesService) {}
+  readonly employeeList$: Observable<EmployeeModel[]> =
+    this._employeesService.getAll();
 }

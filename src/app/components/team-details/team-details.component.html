@@ -1,6 +1,7 @@
 <div *ngIf="teamDetails$ | async as team">
     <app-card-content [title]="team.name" [subtitle]="team.description">
-        <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list></app-card-content>
+        <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list>
+    </app-card-content>
     <hr>
 
 

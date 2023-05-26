@@ -20,8 +20,6 @@ export class TeamDetailsComponent {
     private _teamsService: TeamsService
   ) {}
 
-  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
-
   readonly teamDetails$: Observable<TeamModel> =
     this._activatedRoute.params.pipe(
       switchMap((params) => {

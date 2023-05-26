@@ -14,7 +14,7 @@ import { TeamsService } from '../../services/teams.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamsComponent {
-  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
-
   constructor(private _teamsService: TeamsService) {}
+
+  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
 }
