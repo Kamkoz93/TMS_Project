@@ -4,13 +4,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployeesService } from '../../services/employees.service';
-import { EmployeeModel } from 'src/app/models/employee.model';
 import { Observable, combineLatest, map, shareReplay, switchMap } from 'rxjs';
-import { TeamsService } from 'src/app/services/teams.service';
-import { TeamModel } from 'src/app/models/team.model';
-import { ProjectModel } from 'src/app/models/project.model';
-import { ProjectsService } from 'src/app/services/projects.service';
+import { MappedTaskQueryModel } from '../../queries/mapped-task.query-model';
+import { EmployeesService } from '../../services/employees.service';
+import { TeamsService } from '../../services/teams.service';
+import { ProjectsService } from '../../services/projects.service';
+import { TasksService } from '../../services/tasks.service';
+import { ProjectModel } from '../../models/project.model';
+import { TeamModel } from '../../models/team.model';
+import { EmployeeModel } from '../../models/employee.model';
+import { ProjectWithTasksQueryModel } from 'src/app/queries/project-with-tasks.query-model';
 
 @Component({
   selector: 'app-employee-detail',
@@ -23,54 +26,73 @@ export class EmployeeDetailComponent {
     private _employeesService: EmployeesService,
     private _activatedRoute: ActivatedRoute,
     private _teamsService: TeamsService,
-    private _projectsService: ProjectsService
+    private _projectsService: ProjectsService,
+    private _tasksService: TasksService
   ) {}
 
-  readonly pageParams: Observable<string> = this._activatedRoute.params.pipe(
+  readonly pageParams$: Observable<string> = this._activatedRoute.params.pipe(
     map((params) => params['id'])
   );
 
-  readonly projectsList$: Observable<ProjectModel[]> =
-    this._projectsService.getAll();
+  readonly projectsListWithMapeedTasks$: Observable<
+    ProjectWithTasksQueryModel[]
+  > = combineLatest([
+    this._projectsService.getAll(),
+    this._tasksService.getFullTasksList(),
+  ]).pipe(
+    map(([projects, tasks]: [ProjectModel[], MappedTaskQueryModel[]]) => {
+      return projects.map((project) => {
+        const mappedTasks = tasks
+          .filter((task) => task.projectId === project.id)
+          .flatMap((task) =>
+            task.checkList.map((checkListItem) => ({
+              id: checkListItem.id,
+              name: checkListItem.name,
+              isDone: checkListItem.isDone,
+            }))
+          );
 
-  readonly teamsList$: Observable<TeamModel[]> = this._teamsService.getAll();
+        return {
+          ...project,
+          tasks: mappedTasks,
+        };
+      });
+    })
+  );
 
-  readonly employeeDetails$: Observable<EmployeeModel> = this.pageParams.pipe(
+  readonly employeeDetails$: Observable<EmployeeModel> = this.pageParams$.pipe(
     switchMap((id) => {
       return this._employeesService.getOne(id);
     }),
     shareReplay(1)
   );
 
-  readonly teamsWithEmployee$: Observable<TeamModel[]> = combineLatest([
-    this.teamsList$,
-    this.employeeDetails$,
-    this.pageParams,
-  ]).pipe(
-    map(([teams, employee, params]: [TeamModel[], EmployeeModel, string]) => {
-      return teams.filter((team: TeamModel) =>
-        team.members.some((member) => member.id === employee.id)
-      );
-    })
-  );
-  readonly projectsWithEmployee$: Observable<ProjectModel[]> = combineLatest([
-    this.projectsList$,
+  readonly teamsWithCurrentEmployee$: Observable<TeamModel[]> = combineLatest([
+    this._teamsService.getAll(),
     this.employeeDetails$,
   ]).pipe(
-    map(([projects, employee]: [ProjectModel[], EmployeeModel]) => {
-      return projects.filter((project: ProjectModel) =>
-        project.assignees.some((member) => member.id === employee.id)
-      );
-    })
+    map(([teams, employee]: [TeamModel[], EmployeeModel]) =>
+      teams
+        .filter((team: TeamModel) =>
+          team.members.some((member) => member.id === employee.id)
+        )
+        .map((team: TeamModel) => ({
+          ...team,
+          members: team.members.filter((member) => member.id !== employee.id),
+        }))
+    )
   );
 
-  filterOutSelectedMember(
-    teamMembers: EmployeeModel[]
-  ): Observable<EmployeeModel[]> {
-    return this.pageParams.pipe(
-      map((paramId: string) =>
-        teamMembers.filter((member) => member.id !== paramId)
+  readonly projectsWithCurrentEmployee$: Observable<
+    ProjectWithTasksQueryModel[]
+  > = combineLatest([
+    this.projectsListWithMapeedTasks$,
+    this.employeeDetails$,
+  ]).pipe(
+    map(([projects, employee]: [ProjectWithTasksQueryModel[], EmployeeModel]) =>
+      projects.filter((project: ProjectModel) =>
+        project.assignees.some((member) => member.id === employee.id)
       )
-    );
-  }
+    )
+  );
 }

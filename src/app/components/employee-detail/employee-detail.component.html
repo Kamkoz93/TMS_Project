@@ -25,11 +25,10 @@
                 </div>
                 <div class="content-list-body row">
 
-                    <app-list-element class="col-lg-6" *ngFor="let team of teamsWithEmployee$ | async" class="col-lg-6"
-                        [heading]="team.name"
+                    <app-list-element class="col-lg-6" *ngFor="let team of teamsWithCurrentEmployee$ | async"
+                        class="col-lg-6" [heading]="team.name"
                         [description]="team.projects.length.toString() + ' Projects, ' + team.members.length.toString() + ' Members'">
-                        <app-mini-avatar-list
-                            [data]="filterOutSelectedMember(team.members) | async"></app-mini-avatar-list>
+                        <app-mini-avatar-list [data]="team.members"></app-mini-avatar-list>
                     </app-list-element>
 
                 </div>
@@ -43,7 +42,7 @@
                     </div>
                 </div>
                 <div class="content-list-body row">
-                    <app-list-element class="col-6" *ngFor="let project of projectsWithEmployee$ | async"
+                    <app-list-element class="col-6" *ngFor="let project of projectsWithCurrentEmployee$ | async"
                         class="col-lg-6" [heading]="project.name">
                         <div class="card-meta d-flex justify-content-between">
                             <app-check-list [isDoneCount]="project.tasks | doneChecksCounter"
