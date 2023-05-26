@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, combineLatest, map, shareReplay, switchMap } from 'rxjs';
-import { MappedTaskQueryModel } from '../../queries/mapped-task.query-model';
 import { EmployeesService } from '../../services/employees.service';
 import { TeamsService } from '../../services/teams.service';
 import { ProjectsService } from '../../services/projects.service';
@@ -36,29 +35,7 @@ export class EmployeeDetailComponent {
 
   readonly projectsListWithMapeedTasks$: Observable<
     ProjectWithTasksQueryModel[]
-  > = combineLatest([
-    this._projectsService.getAll(),
-    this._tasksService.getFullTasksList(),
-  ]).pipe(
-    map(([projects, tasks]: [ProjectModel[], MappedTaskQueryModel[]]) => {
-      return projects.map((project) => {
-        const mappedTasks = tasks
-          .filter((task) => task.projectId === project.id)
-          .flatMap((task) =>
-            task.checkList.map((checkListItem) => ({
-              id: checkListItem.id,
-              name: checkListItem.name,
-              isDone: checkListItem.isDone,
-            }))
-          );
-
-        return {
-          ...project,
-          tasks: mappedTasks,
-        };
-      });
-    })
-  );
+  > = this._projectsService.getMapedProjectsWithTasks();
 
   readonly employeeDetails$: Observable<EmployeeModel> = this.pageParams$.pipe(
     switchMap((id) => {
