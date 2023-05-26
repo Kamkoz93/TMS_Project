@@ -67,19 +67,14 @@ export class EmployeeDetailComponent {
     shareReplay(1)
   );
 
-  readonly teamsWithCurrentEmployee$: Observable<TeamModel[]> = combineLatest([
+  readonly currentEmployeeTeams$: Observable<TeamModel[]> = combineLatest([
     this._teamsService.getAll(),
     this.employeeDetails$,
   ]).pipe(
     map(([teams, employee]: [TeamModel[], EmployeeModel]) =>
-      teams
-        .filter((team: TeamModel) =>
-          team.members.some((member) => member.id === employee.id)
-        )
-        .map((team: TeamModel) => ({
-          ...team,
-          members: team.members.filter((member) => member.id !== employee.id),
-        }))
+      teams.filter((team: TeamModel) =>
+        team.members.some((member) => member.id === employee.id)
+      )
     )
   );
 
