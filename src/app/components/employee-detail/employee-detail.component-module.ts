@@ -5,6 +5,7 @@ import { CheckListComponentModule } from '../check-list/check-list.component-mod
 import { DaysLeftPipeModule } from 'src/app/pipes/days-left/days-left.pipe-module';
 import { MiniAvatarListComponentModule } from '../mini-avatar-list/mini-avatar-list.component-module';
 import { CommonModule } from '@angular/common';
+import { DoneChecksCounterPipeModule } from 'src/app/pipes/done-checks-counter/done-checks-counter.pipe-module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
     CheckListComponentModule,
     DaysLeftPipeModule,
     MiniAvatarListComponentModule,
+    DoneChecksCounterPipeModule,
   ],
   declarations: [EmployeeDetailComponent],
   providers: [],

@@ -5,7 +5,7 @@
         <app-list-element class="card-task" *ngFor="let task of fullTasksList$ | async" [heading]="task.name"
             [description]="task.dueDate | dueDate" [progressValue]="task.tasksProgress" [multi]="true">
             <app-mini-avatar-list [data]="task.assignees">
-                <app-check-list [isDoneCount]="getCountOfIsDone(task.checkList)"
+                <app-check-list [isDoneCount]="task.checkList | doneChecksCounter"
                     [totalChecks]="task.checkList.length"></app-check-list>
             </app-mini-avatar-list>
         </app-list-element>

@@ -32,8 +32,4 @@ export class TasksComponent {
 
   readonly employeeList$: Observable<EmployeeModel[]> =
     this._employeesService.getAll();
-
-  public getCountOfIsDone(data: CheckListItemModel[]): number {
-    return data.filter((item) => item.isDone === true).length;
-  }
 }
