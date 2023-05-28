@@ -2,6 +2,7 @@
 <hr>
 <div class="content-list mt-4">
     <div class="content-list-body row">
+        <app-loader *appLoadingSpinner></app-loader>
         <app-avatar-card class="col-lg-6" *ngFor="let employee of employeeList$ | async"
             [fullName]="employee.firstName + ' ' + employee.lastName" [description]="employee.position"
             [photo]="employee.avatarUrl" [urlId]="'/' + urlRoutes.EMPLOYEE_DETAILS + employee.id"></app-avatar-card>

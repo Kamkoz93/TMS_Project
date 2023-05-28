@@ -5,6 +5,8 @@ import { AvatarCardComponentModule } from '../avatar-card/avatar-card.component-
 import { CardContentComponentModule } from '../card/card-content.component-module';
 import { CommonModule } from '@angular/common';
 import { PointerOnHoverDirectiveModule } from 'src/app/directives/pointer-on-hover/pointer-on-hover.directive-module';
+import { LoaderComponentModule } from '../loader/loader.component-module';
+import { LoadingSpinnerDirectiveModule } from 'src/app/directives/loading-spinner/loading-spinner.directive-module';
 
 @NgModule({
   imports: [
@@ -13,6 +15,8 @@ import { PointerOnHoverDirectiveModule } from 'src/app/directives/pointer-on-hov
     AvatarCardComponentModule,
     CardContentComponentModule,
     PointerOnHoverDirectiveModule,
+    LoaderComponentModule,
+    LoadingSpinnerDirectiveModule,
   ],
   declarations: [HomeComponent],
   providers: [],

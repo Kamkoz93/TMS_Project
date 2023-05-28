@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { EmployeeModel } from '../models/employee.model';
 import { API_ROUTES_DEF } from '../configuration/routes-definition';
 

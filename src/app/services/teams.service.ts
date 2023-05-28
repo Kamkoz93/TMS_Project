@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TeamModel } from '../models/team.model';
-import { Observable, combineLatest, map, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { API_ROUTES_DEF } from '../configuration/routes-definition';
 

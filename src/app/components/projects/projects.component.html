@@ -2,6 +2,7 @@
 <hr>
 <div class="content-list">
     <div class="content-list-body row">
+        <app-loader *appLoadingSpinner></app-loader>
         <app-list-element class="col-lg-6" *ngFor="let project of projectsList$ | async" [heading]="project.name"
             [description]="project.dueDate | dueDate" [progressValue]="project.percentage">
         </app-list-element>

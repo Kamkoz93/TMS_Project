@@ -1,13 +1,11 @@
 <div class="card-meta">
     <ul class="avatars">
-
         <li *ngFor="let avatar of data">
             <a [href]="'/' + urlRoutes.EMPLOYEE_DETAILS + avatar.id" data-toggle="tooltip" title=""
                 [attr.data-original-title]="avatar.firstName">
                 <img alt="{{avatar.firstName}}" class="avatar" src="{{avatar.avatarUrl}}">
             </a>
         </li>
-
     </ul>
     <ng-content></ng-content>
 </div>

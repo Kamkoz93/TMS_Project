@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProgressBarDirectiveModule } from './directives/progress-bar/progress-bar.directive-module';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,8 @@ import { ListElementComponentModule } from './components/list-element/list-eleme
 import { CardContentComponentModule } from './components/card/card-content.component-module';
 import { TeamsComponentModule } from './components/teams/teams.component-module';
 import { CommonModule } from '@angular/common';
+import { LoaderInterceptor } from './services/loader-interceptor';
+import { LoaderComponentModule } from './components/loader/loader.component-module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -38,8 +40,15 @@ import { CommonModule } from '@angular/common';
     ListElementComponentModule,
     CardContentComponentModule,
     TeamsComponentModule,
+    LoaderComponentModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,6 +6,8 @@ import { ListElementComponentModule } from '../list-element/list-element.compone
 import { CardContentComponentModule } from '../card/card-content.component-module';
 import { MiniAvatarListComponentModule } from '../mini-avatar-list/mini-avatar-list.component-module';
 import { CommonModule } from '@angular/common';
+import { LoaderComponentModule } from '../loader/loader.component-module';
+import { LoadingSpinnerDirectiveModule } from 'src/app/directives/loading-spinner/loading-spinner.directive-module';
 
 @NgModule({
   imports: [
@@ -15,6 +17,8 @@ import { CommonModule } from '@angular/common';
     ListElementComponentModule,
     CardContentComponentModule,
     MiniAvatarListComponentModule,
+    LoaderComponentModule,
+    LoadingSpinnerDirectiveModule,
   ],
   declarations: [TeamDetailsComponent],
   providers: [],

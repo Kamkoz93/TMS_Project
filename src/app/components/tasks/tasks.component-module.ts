@@ -7,6 +7,8 @@ import { ListElementComponentModule } from '../list-element/list-element.compone
 import { CardContentComponentModule } from '../card/card-content.component-module';
 import { CommonModule } from '@angular/common';
 import { DoneChecksCounterPipeModule } from 'src/app/pipes/done-checks-counter/done-checks-counter.pipe-module';
+import { LoaderComponentModule } from '../loader/loader.component-module';
+import { LoadingSpinnerDirectiveModule } from 'src/app/directives/loading-spinner/loading-spinner.directive-module';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { DoneChecksCounterPipeModule } from 'src/app/pipes/done-checks-counter/d
     ListElementComponentModule,
     CardContentComponentModule,
     DoneChecksCounterPipeModule,
+    LoaderComponentModule,
+    LoadingSpinnerDirectiveModule
   ],
   declarations: [TasksComponent],
   providers: [],
