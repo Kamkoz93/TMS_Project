@@ -13,7 +13,7 @@ import {
 })
 export class ListElementComponent {
   @Input() heading: string = '';
-  @Input() description: string = '';
+  @Input() description: string | null = '';
   @Input() progressValue: number = 0;
   @Input() multi?: boolean;
   @Input() urlId: string | null = null;
