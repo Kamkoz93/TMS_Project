@@ -5,12 +5,17 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { LoaderService } from 'src/app/services/loader.service';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { LoaderService } from '../../services/loader.service';
 
 @Directive({
   selector: '[appLoadingSpinner]',
 })
-export class LoadingSpinnerDirective implements OnInit {
+export class LoadingSpinnerDirective implements OnInit, OnDestroy {
+  private readonly _destroySubject: Subject<void> = new Subject<void>();
+
+  public destroy$: Observable<void> = this._destroySubject.asObservable();
+
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
@@ -18,13 +23,20 @@ export class LoadingSpinnerDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loaderService.isLoading$.subscribe((isLoading) => {
-      if (isLoading) {
-        this.viewContainerRef.clear();
-        this.viewContainerRef.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainerRef.clear();
-      }
-    });
+    this.loaderService.isLoading$
+      .pipe(takeUntil(this._destroySubject.asObservable()))
+      .subscribe((isLoading) => {
+        if (isLoading) {
+          this.viewContainerRef.clear();
+          this.viewContainerRef.createEmbeddedView(this.templateRef);
+        } else {
+          this.viewContainerRef.clear();
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._destroySubject.next();
+    this._destroySubject.complete();
   }
 }
