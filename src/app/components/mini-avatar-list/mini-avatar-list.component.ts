@@ -4,8 +4,8 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { EmployeeModel } from '../../models/employee.model';
 import { ROUTES_DEF } from 'src/app/configuration/routes-definition';
+import { AvatarCardQueryModel } from 'src/app/queries/avatar-card.query-model';
 
 @Component({
   selector: 'app-mini-avatar-list',
@@ -14,7 +14,7 @@ import { ROUTES_DEF } from 'src/app/configuration/routes-definition';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MiniAvatarListComponent {
-  @Input() data: EmployeeModel[] | null = [];
+  @Input() data: AvatarCardQueryModel[] | null = [];
 
   readonly urlRoutes = ROUTES_DEF;
 }
